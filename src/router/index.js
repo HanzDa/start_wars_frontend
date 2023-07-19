@@ -1,15 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
   {
     path: '/about',
     name: 'about',
@@ -17,6 +11,33 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '@/views/AboutView.vue')
+  },
+  {
+    path: '/films',
+    name: 'films',
+    component: () => import(/* webpackChunkName: "films" */ '@/views/FilmsView.vue')
+  },
+  {
+    path: '/film/:id',
+    component: () => import(/* webpackChunkName: "film_id" */ '@/views/_FilmView.vue')
+  },
+  {
+    path: '/planets',
+    name: 'planets',
+    component: () => import(/* webpackChunkName: "planets" */ '@/views/PlanetsView.vue')
+  },
+  {
+    path: '/planet/:id',
+    component: () => import(/* webpackChunkName: "planet_id" */ '@/views/_PlanetView.vue')
+  },
+  {
+    path: '/characters',
+    name: 'characters',
+    component: () => import(/* webpackChunkName: "characters" */ '@/views/CharactersView.vue')
+  },
+  {
+    path: '/character/id',
+    component: () => import(/* webpackChunkName: "character_id" */ '@/views/_CharacterView.vue')
   }
 ]
 
