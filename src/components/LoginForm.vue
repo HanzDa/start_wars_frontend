@@ -2,9 +2,13 @@
     <div data-app>
         <v-dialog transition="dialog-bottom-transition" max-width="500" v-model="showModal">
             <template v-slot:activator="{ on, attrs }">
-                <button v-bind="attrs" v-on="on"
+                <button v-if="!isLogIn" v-bind="attrs" v-on="on"
                     class="text-black bg-yellow-300 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-2">
                     Login
+                </button>
+                <button v-else @click="logout()"
+                    class="text-black bg-yellow-300 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-2">
+                    Logout
                 </button>
             </template>
 
@@ -70,6 +74,7 @@ export default {
             wrongLogin: false,
             email: null,
             password: null,
+            isLogIn: !!window.localStorage.getItem('jwtToken')
         }
     },
     methods: {
@@ -80,10 +85,16 @@ export default {
                 password: this.password
             }).then(res => {
                 this.showModal = false;
+                this.isLogIn = true;
                 window.localStorage.setItem('jwtToken', res.data.access)
             }).catch(() => {
                 this.wrongLogin = true;
             })
+        },
+        logout() {
+            this.isLogIn = false;
+            this.showModal = true;
+            window.localStorage.removeItem('jwtToken')
         }
     },
 }

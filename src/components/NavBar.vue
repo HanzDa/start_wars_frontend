@@ -6,11 +6,8 @@
                 <img src="@/assets/logo.png" class="h-8 mr-3" alt="Star wars Logo">
             </router-link>
             <div class="flex md:order-2 justify-end">
-                
-                <login-form />
-
-                
-                <register-form />
+                <login-form /> 
+                <!-- <register-form /> -->
             </div>
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                 <ul
@@ -42,13 +39,13 @@
 </template>
 <script>
 import LoginForm from '@/components/LoginForm.vue';
-import RegisterForm from '@/components/RegisterForm.vue';
+// import RegisterForm from '@/components/RegisterForm.vue';
 
 export default {
     name: 'NavBar',
     components: {
         LoginForm,
-        RegisterForm
+        // RegisterForm  ---> Register form is not working yet
     },
     data() {
         return {

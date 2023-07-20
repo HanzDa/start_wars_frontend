@@ -1,5 +1,5 @@
 <template>
-    <cards-group :items="films" route-name="film_id" md="4" v-slot="{ item: film }">
+    <cards-group :items="films" route-name="film_id" :md="4" v-slot="{ item: film }">
         <v-img class="white--text align-end" height="200px" lazy-src="@/assets/imgs/films_poster.jpeg" :src="film.img_url">
         </v-img>
 
