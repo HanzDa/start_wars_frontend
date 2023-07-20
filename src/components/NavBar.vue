@@ -16,14 +16,14 @@
                 <ul
                     class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                     <li>
+                        <router-link :to="{ name: 'characters' }"
+                        class="block py-2 pl-3 pr-4 text-black bg-blue-700 rounded md:bg-transparent md:text-black-700 md:p-0 md:dark:text-blue-500"
+                        aria-current="Characters">Characters</router-link>
+                    </li>
+                    <li>
                         <router-link :to="{ name: 'films' }"
                             class="block py-2 pl-3 pr-4 text-black bg-blue-700 rounded md:bg-transparent md:text-black-700 md:p-0 md:dark:text-blue-500"
                             aria-current="Films">Films</router-link>
-                    </li>
-                    <li>
-                        <router-link :to="{ name: 'characters' }"
-                            class="block py-2 pl-3 pr-4 text-black bg-blue-700 rounded md:bg-transparent md:text-black-700 md:p-0 md:dark:text-blue-500"
-                            aria-current="Characters">Characters</router-link>
                     </li>
                     <li>
                         <router-link :to="{ name: 'planets' }"

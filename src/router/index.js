@@ -33,7 +33,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "planet_id" */ '@/views/_PlanetView.vue')
   },
   {
-    path: '/characters',
+    path: '/',
     name: 'characters',
     component: () => import(/* webpackChunkName: "characters" */ '@/views/CharactersView.vue')
   },

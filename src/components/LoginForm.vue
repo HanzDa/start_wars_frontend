@@ -1,6 +1,6 @@
 <template>
     <div data-app>
-        <v-dialog transition="dialog-bottom-transition" max-width="500" v-model="closeModal">
+        <v-dialog transition="dialog-bottom-transition" max-width="500" v-model="showModal">
             <template v-slot:activator="{ on, attrs }">
                 <button v-bind="attrs" v-on="on"
                     class="text-black bg-yellow-300 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-2">
@@ -17,6 +17,7 @@
                         <h3 class="mb-4 text-xl font-medium text-gray-900">Ready to soar among the stars? Login now and
                             blast off!</h3>
                         <form class="space-y-6" @submit.prevent="login()">
+                            <p v-if="wrongLogin" class="mt-2 text-sm text-red-600"><span class="font-medium">Email or password incorrect,</span> please check and try again.</p>
                             <div>
                                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Your
                                     email</label>
@@ -65,22 +66,23 @@ export default {
     },
     data() {
         return {
-            closeModal: false,
+            showModal: false,
+            wrongLogin: false,
             email: null,
             password: null,
         }
     },
     methods: {
-        login() {
-            auth_axios.post('login/', {
+        async login() {
+            this.wrongLogin = false;
+            await auth_axios.post('login/', {
                 email: this.email,
                 password: this.password
             }).then(res => {
-                this.closeModal = true;
-                console.log(res);
+                this.showModal = false;
                 window.localStorage.setItem('jwtToken', res.data.access)
-            }).catch(err => {
-                console.log(err)
+            }).catch(() => {
+                this.wrongLogin = true;
             })
         }
     },

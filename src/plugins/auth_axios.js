@@ -13,4 +13,28 @@ let config = {
 };
 
 const auth_axios = axios.create(config);
+
+auth_axios.interceptors.request.use(
+  (config) => {
+    const jwtToken = localStorage.getItem("jwtToken");
+    if (jwtToken) {
+      config.headers.Authorization = `Bearer ${jwtToken}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  },
+);
+
+// Add a response interceptor
+auth_axios.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  function (error) {
+    return Promise.reject(error);
+  }
+);
+
 export default auth_axios;

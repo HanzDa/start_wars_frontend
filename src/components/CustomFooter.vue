@@ -1,6 +1,6 @@
 <template>
     <!--Footer container-->
-    <footer class="bg-neutral-200 text-center text-white dark:bg-neutral-600">
+    <footer class="bg-neutral-300 text-center text-white dark:bg-neutral-600">
         <div class="container pt-9">
             <div class="mb-9 flex justify-center">
                 <!-- Instagram -->
@@ -28,7 +28,7 @@
         </div>
 
         <!--Copyright section-->
-        <div class="bg-neutral-300 p-4 text-center text-neutral-700 dark:bg-neutral-700 dark:text-neutral-200">
+        <div class="bg-neutral-400 p-4 text-center text-neutral-700 dark:bg-neutral-700 dark:text-neutral-200">
             © {{ year }} Copyright:
             <a class="text-neutral-800 dark:text-neutral-400 hover:text-emerald-700" href="https://my-portfolio-hanzda.vercel.app/">Hanz Gallego</a>
         </div>
