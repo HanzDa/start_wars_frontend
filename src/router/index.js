@@ -19,6 +19,7 @@ const routes = [
   },
   {
     path: '/film/:id',
+    name: 'film_id',
     component: () => import(/* webpackChunkName: "film_id" */ '@/views/_FilmView.vue')
   },
   {
@@ -28,6 +29,7 @@ const routes = [
   },
   {
     path: '/planet/:id',
+    name: 'planet_id',
     component: () => import(/* webpackChunkName: "planet_id" */ '@/views/_PlanetView.vue')
   },
   {
@@ -36,7 +38,8 @@ const routes = [
     component: () => import(/* webpackChunkName: "characters" */ '@/views/CharactersView.vue')
   },
   {
-    path: '/character/id',
+    path: '/character/:id',
+    name: 'character_id',
     component: () => import(/* webpackChunkName: "character_id" */ '@/views/_CharacterView.vue')
   }
 ]

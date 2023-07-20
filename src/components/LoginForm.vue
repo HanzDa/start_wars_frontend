@@ -1,6 +1,6 @@
 <template>
     <div data-app>
-        <v-dialog transition="dialog-bottom-transition" max-width="500">
+        <v-dialog transition="dialog-bottom-transition" max-width="500" v-model="closeModal">
             <template v-slot:activator="{ on, attrs }">
                 <button v-bind="attrs" v-on="on"
                     class="text-black bg-yellow-300 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-2">
@@ -16,26 +16,25 @@
                     <div class="px-6 py-6 lg:px-8">
                         <h3 class="mb-4 text-xl font-medium text-gray-900">Ready to soar among the stars? Login now and
                             blast off!</h3>
-                        <form class="space-y-6" action="#">
+                        <form class="space-y-6" @submit.prevent="login()">
                             <div>
                                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Your
                                     email</label>
-                                <input type="email" name="email" id="email"
+                                <input type="email" name="email" id="email" v-model="email"
                                     class="bg-gray-50 border border-solid border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="jhon@xyz.com" required>
                             </div>
                             <div>
                                 <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Your
                                     password</label>
-                                <input type="password" name="password" id="password" placeholder="***********"
+                                <input type="password" name="password" id="password" v-model="password"
                                     class="bg-gray-50 border border-solid border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    required>
+                                    required placeholder="***********">
                             </div>
                             <div class="flex justify-between">
                                 <div class="flex items-start">
                                     <input id="remember" type="checkbox" value=""
-                                        class="w-4 h-4 border border-gray-800 rounded bg-gray-200 focus:ring-3 focus:ring-blue-300"
-                                        required>
+                                        class="w-4 h-4 border border-gray-800 rounded bg-gray-200 focus:ring-3 focus:ring-blue-300">
                                     <label for="remember" class="ml-2 text-sm font-medium text-gray-900">Remember
                                         me</label>
                                 </div>
@@ -57,6 +56,7 @@
 </template>
 <script>
 import RegisterForm from "@/components/RegisterForm.vue"
+import auth_axios from '@/plugins/auth_axios'
 
 export default {
     name: 'LoginForm',
@@ -65,10 +65,24 @@ export default {
     },
     data() {
         return {
-            ShowRegisterModal: false,
+            closeModal: false,
+            email: null,
+            password: null,
         }
     },
     methods: {
+        login() {
+            auth_axios.post('login/', {
+                email: this.email,
+                password: this.password
+            }).then(res => {
+                this.closeModal = true;
+                console.log(res);
+                window.localStorage.setItem('jwtToken', res.data.access)
+            }).catch(err => {
+                console.log(err)
+            })
+        }
     },
 }
 </script>

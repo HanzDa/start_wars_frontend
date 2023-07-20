@@ -1,8 +1,8 @@
 <template>
     <nav
-        class="bg-white dark:bg-gray-900 sticky top-0 w-full z-20 border-b border-gray-200 dark:border-gray-600 px-4 py-2 mb-1">
+        class="bg-white dark:bg-gray-900 sticky top-0 w-full z-20 border-b border-gray-200 dark:border-gray-600 px-4 py-2 mb-1 shadow-md">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <router-link :to="{name: 'home'}" class="flex items-center">
+            <router-link :to="{name: 'films'}" class="flex items-center">
                 <img src="@/assets/logo.png" class="h-8 mr-3" alt="Star wars Logo">
             </router-link>
             <div class="flex md:order-2 justify-end">
@@ -18,17 +18,17 @@
                     <li>
                         <router-link :to="{ name: 'films' }"
                             class="block py-2 pl-3 pr-4 text-black bg-blue-700 rounded md:bg-transparent md:text-black-700 md:p-0 md:dark:text-blue-500"
-                            aria-current="Home">Films</router-link>
+                            aria-current="Films">Films</router-link>
                     </li>
                     <li>
                         <router-link :to="{ name: 'characters' }"
                             class="block py-2 pl-3 pr-4 text-black bg-blue-700 rounded md:bg-transparent md:text-black-700 md:p-0 md:dark:text-blue-500"
-                            aria-current="Home">Characters</router-link>
+                            aria-current="Characters">Characters</router-link>
                     </li>
                     <li>
                         <router-link :to="{ name: 'planets' }"
                             class="block py-2 pl-3 pr-4 text-black bg-blue-700 rounded md:bg-transparent md:text-black-700 md:p-0 md:dark:text-blue-500"
-                            aria-current="Home">Planets</router-link>
+                            aria-current="Planets">Planets</router-link>
                     </li>
                     <li>
                         <router-link :to="{ name: 'about' }"

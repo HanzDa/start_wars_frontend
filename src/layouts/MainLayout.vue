@@ -2,7 +2,7 @@
     <div>
         <nav-bar />
         <!-- Main content -->
-        <main class="mx-20">
+        <main class="min-h-screen pb-10">
             <slot />
         </main>
         <custom-footer />

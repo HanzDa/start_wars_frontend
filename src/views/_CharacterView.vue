@@ -1,18 +1,61 @@
 <template>
-    <div>
-        character here!
+    <v-container>
+        <v-row>
+            <v-col cols="12" md="4">
+                <v-card class="mx-auto" max-width="374">
+                    <v-img height="300" lazy-src="@/assets/imgs/films_poster.jpeg" :src="character.img_url"></v-img>
 
+                    <v-card-title>{{ character.name }}</v-card-title>
 
-        <div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit fuga minus voluptatibus, doloremque magnam ut obcaecati perferendis odit quae doloribus sint suscipit commodi porro magni id vitae dolorum dolore qui cum assumenda soluta iste illum! Commodi rem dolore molestias nesciunt dignissimos necessitatibus at accusamus, dicta sapiente saepe corporis deserunt quasi sunt maiores et quo numquam, sequi a. Pariatur dolor, id neque tempore magni dolore odit nesciunt! Ratione dolorem incidunt magnam laboriosam magni autem et aliquam vitae. Totam minus, placeat saepe autem aut tenetur dolor. Consequuntur, quaerat eligendi magnam, molestias recusandae amet ratione, voluptatibus aliquam fugiat consectetur laborum ex odit temporibus doloribus. Labore in dolorum quis nesciunt. Officiis natus illum dolor, impedit eveniet commodi! Cum dolor, ad aut velit doloribus quaerat ipsum at. Dolorem obcaecati ducimus perspiciatis itaque fugiat, reprehenderit necessitatibus ipsa illo? Voluptates ut eligendi sequi impedit saepe provident architecto ea, consequatur modi sunt qui molestias, ipsum aperiam! Adipisci possimus labore eveniet dolorum accusantium, ducimus aut assumenda provident inventore, dolor sequi accusamus minima eum corrupti consectetur dolores consequatur soluta cum maxime id laudantium excepturi animi vero. Qui vel quis asperiores non dolores aspernatur quas vero, nostrum illo debitis, quos fugit est. Dicta aut error similique excepturi illum facere velit quasi doloremque praesentium, quibusdam, ad itaque ipsum saepe, quos tempore blanditiis libero. Aspernatur, consequatur saepe dignissimos culpa ratione et aliquid rem dolores autem incidunt alias odit quasi qui suscipit, eaque provident laudantium inventore, sequi amet illum corrupti similique exercitationem. Accusamus iste veniam corrupti voluptatem provident quae sunt ea doloremque ut. Cupiditate inventore explicabo optio sapiente repellendus eligendi nobis nulla itaque sequi quidem amet suscipit nemo, dolore rem? Sequi laudantium veritatis necessitatibus quis fugit quo at sed suscipit earum laborum aperiam repellendus expedita adipisci rem facere tempora minus tenetur, temporibus maxime ipsam iste! Impedit in sequi optio dolor voluptatem iure atque facere?
-        </div>
-    </div>
+                    <v-card-text>
+                        <v-row class="">
+                            <v-col v-for="item, index in characterAttrs"
+                            cols="6" class="text-md" :key="index">
+                                <v-icon aria-hidden="false">
+                                    {{ item.icon }}
+                                </v-icon> <b>{{ item.title }}:</b> {{ item.attr }}
+                            </v-col>
+                        </v-row>
+                    </v-card-text>
+                </v-card>
+            </v-col>
+            <v-col cols="12" md="8">
+                {{ character.mix }}
+                {{ character.films }}
+            </v-col>
+        </v-row>
+    </v-container>
 </template>
 <script>
 export default {
-    name: 'CharactersView'
+    name: 'CharactersView',
+    data() {
+        return {
+            character: {}
+        }
+    },
+    computed: {
+        characterAttrs() {
+            return [
+                {attr: this.character.gender, icon: 'mdi-gender-male-female', title: 'Gender'},
+                {attr: this.character.age, icon: 'mdi-cake-variant-outline', title: 'Age'},
+                {attr: this.character.skin_color, icon: 'mdi-palette', title: 'Skin color'},
+                {attr: this.character.eye_color, icon: 'mdi-eye-outline', title: 'Eye color'},
+                {attr: this.character.height, icon: 'mdi-human-male-height', title: 'Height'},
+                {attr: this.character.mass, icon: 'mdi-weight-kilogram', title: 'Mass'},
+            ]
+        }
+    },
+    methods: {
+        getCharacter() {
+            this.axios.get(`characters/${this.$route.params?.id}`).then(res => {
+                this.character = res.data
+            })
+        }
+    },
+    mounted() {
+        this.getCharacter();
+    }
 }
 </script>
-<style>
-    
-</style>
+<style></style>
